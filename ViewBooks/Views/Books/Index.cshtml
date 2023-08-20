@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Book>
+<br />
+<br />
+<h1 style="color:rgb(79,49,204);font-weight:bold;" class="text-center">Books</h1>
+<br />
+<br />
+<br />
+
+<div class="d-flex justify-content-center">
+    <a asp-controller="Books" asp-action="GetCreateView" class="btn btn-outline-secondary btn-lg mb-1"> Add New Book </a>
+</div>
+<br />
+<br />
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th style="color:black;font-weight:bold">@Html.DisplayNameFor(e=>e.BookName)</th>
+                <th style="color:black;font-weight:bold">@Html.DisplayNameFor(e=>e.AuthorName)</th>
+                <th style="color:black;font-weight:bold">@Html.DisplayNameFor(e=>e.NumberOfPages)</th>
+                <th style="color:black;font-weight:bold">@Html.DisplayNameFor(e=>e.Price)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> @item.BookName</td>
+                    <td> @item.AuthorName</td>
+                    <td> @item.NumberOfPages</td>
+                    <td>$ @item.Price</td>
+                    <td>
+                        <a asp-controller="Books" asp-action="GetDetailsView" asp-route-id="@item.Id" class="btn btn-outline-secondary"><i class="bi bi-card-list"></i></a>
+                        <a asp-controller="Books" asp-action="GetEditView" asp-route-id="@item.Id" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Books" asp-action="GetDeleteView" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i>  </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="3" style="text-align:right"><strong>Total</strong></td>
+                <td>$ @Model.Sum(e=>e.Price)</td>
+
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <h2 style="color:darkred;font-weight:bold">There is no date.</h2>
+}
+<br />
+<hr />

@@ -1,0 +1,111 @@
+﻿
+@model Book
+
+<br /><br />
+<h1 style="color:rgb(79,49,204);font-weight:bold;" class="text-center">Edit Book info</h1>
+<br /><br />
+<div class="row">
+	<form class="col-md-6" method="post" asp-controller="Books" asp-action="EditCurrent" enctype="multipart/form-data">
+
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<input type="hidden" asp-for="Id" />
+		<input type="hidden" asp-for="ImageUrl" />
+
+		<div class="mb-3">
+			<div class="row">
+				<label for="BookName" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Book Name:</label>
+				<div class="col-md-8">
+					<input type="text" asp-for="BookName" class="form-control" />
+					<span asp-validation-for="BookName" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="mb-3">
+			<div class="row">
+				<label for="Price" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Price:</label>
+				<div class="col-md-8">
+					<input type="number" asp-for="Price" class="form-control" />
+					<span asp-validation-for="Price" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="mb-3">
+			<div class="row">
+				<label for="NumberOfPages" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Number Of Pages:</label>
+				<div class="col-md-8">
+					<input type="number" asp-for="NumberOfPages" class="form-control" />
+					<span asp-validation-for="NumberOfPages" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="mb-3">
+			<div class="row">
+				<label for="AuthorName" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Author Name:</label>
+				<div class="col-md-8">
+					<input type="text" asp-for="AuthorName" class="form-control" />
+					<span asp-validation-for="AuthorName" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="mb-3">
+			<div class="row">
+				<label for="DateOfPublication" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Date Of Publication:</label>
+				<div class="col-md-8">
+					<input asp-for="DateOfPublication" class="form-control" />
+					<span asp-validation-for="DateOfPublication" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="mb-3">
+			<div class="row">
+				<label for="ImageUrl" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Image:</label>
+				<div class="col-md-8">
+					<input type="file" name="imageFormFile" id="imageFormFile" accept=".png,.jpg" onchange="AddImage()" class="form-control" />
+				</div>
+			</div>
+		</div>
+		<br />
+		
+		<div class="mb-3">
+			<div class="row">
+				<label for="BookType" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Book Type:</label>
+				<div class="col-md-8">
+					<select asp-for="CategoryId" asp-items="@ViewBag.TypeSelectItems" class="form-control">
+						<option selected disabled>Select...</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="mb-3">
+			<div class="row justify-content-between">
+				<div class="col-md-8 offset-md-4">
+					<!-- Offset to push the content to the right -->
+					<button type="submit" class="btn btn-primary btn-lg mt-3">Edit</button>
+					<a asp-controller="Books" asp-action="GetIndexView" class="btn btn-primary btn-lg mt-3">Back</a>
+				</div>
+			</div>
+		</div>
+	</form>
+@*
+	<div class="col-4">
+		<img src="@Model.ImageUrl" id="bookImage" style="object-fit:contain" />
+
+	</div>*@
+	<div class="col-md-4 offset-md-1">
+		<img src="@Model.ImageUrl" id="bookImage" style="object-fit: contain; width: 100%; height: 500px;" />
+	</div>
+
+</div>
+@section Scripts{
+	<script>
+		function AddImage() {
+			document.getElementById('bookImage').src = window.URL.createObjectURL(document.getElementById('imageFormFile').files[0]);
+		}
+	</script>
+		}

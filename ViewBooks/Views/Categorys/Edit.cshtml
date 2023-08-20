@@ -1,0 +1,43 @@
+﻿@model Category
+
+<br /><br />
+<h1 style="color:rgb(79,49,204);font-weight:bold;" class="text-center">Edit Category info</h1>
+<br /><br />
+<div class="row">
+	<form class="col-md-6" method="post" asp-controller="Categorys" asp-action="EditCurrent" enctype="multipart/form-data">
+
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<input type="hidden" asp-for="Id" />
+
+		<div class="mb-3">
+			<div class="row">
+				<label for="BookType" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Book Type:</label>
+				<div class="col-md-8">
+					<input type="text" asp-for="BookType" class="form-control" />
+					<span asp-validation-for="BookType" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="mb-3">
+			<div class="row">
+				<label for="Description" class="col-md-4 col-form-label text-md-end" style="color: mediumblue; font-weight: bold;">Description:</label>
+				<div class="col-md-8">
+					<input type="text" asp-for="Description" class="form-control" />
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+		<br />
+		
+		<div class="mb-3">
+			<div class="row justify-content-between">
+				<div class="col-md-8 offset-md-4">
+					<!-- Offset to push the content to the right -->
+					<button type="submit" class="btn btn-primary btn-lg mt-3">Edit</button>
+					<a asp-controller="Categorys" asp-action="GetIndexView" class="btn btn-primary btn-lg mt-3">Back</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Category
+<br />
+<br />
+<h1 style="color:rgb(79,49,204);font-weight:bold;" class=" text-center">@Model.BookType books Details</h1>
+<br />
+<br />
+
+<dl class="row">
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.Id)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.Id)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.BookType)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.BookType)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.Description)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.Description)</dd>
+</dl>
+
+<br />
+<h3 style="color:rgb(79,49,204)">Names of books of this Category</h3>
+@if (Model.Books.Count() > 0)
+{
+	<ul>
+		@foreach (var item in Model.Books)
+		{
+			<li>@item.BookName ( @item.AuthorName )</li>
+		}
+	</ul>
+}
+else
+{
+	<br />
+	<h5 style="color:darkred;font-weight:bold">There is no book in this category</h5>
+}
+<br />
+<a asp-controller="Categorys" asp-action="GetIndexView" class="btn btn-primary mt-3">Back</a>

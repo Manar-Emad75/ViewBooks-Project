@@ -1,0 +1,34 @@
+﻿@model Book
+<br /><br />
+<h1 style="color:rgb(79,49,204);font-weight:bold;" class=" text-center">@Model.BookName book Details</h1>
+<br /><br /><br />
+
+<dl class="row">
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.Id)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.Id)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.BookName)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.BookName)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.Price)</dt>
+	<dd class="col-10">$ @Html.DisplayFor(e=>e.Price)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.NumberOfPages)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.NumberOfPages)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.AuthorName)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.AuthorName)</dd>
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.DateOfPublication)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.DateOfPublication)</dd>
+
+
+	<dt class="col-2" style="color:black">@Html.DisplayNameFor(e=>e.CategoryId)</dt>
+	<dd class="col-10">@Html.DisplayFor(e=>e.category.BookType)</dd>
+</dl>
+
+<div class="col-2 float-end  " style="position:absolute ;top:25%;right:700px">
+	<img src="@Model.ImageUrl" style="width:100%;height:350px;aspect-ratio:1/1">
+</div>
+
+<a asp-controller="Books" asp-action="GetIndexView" class="btn btn-primary mt-3">Back</a>
